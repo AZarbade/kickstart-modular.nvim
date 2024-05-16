@@ -61,7 +61,24 @@ return {
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        defaults = {
+        vimgrep_arguments = {
+            'rg',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '--ignore-file',
+            '.gitignore'
+          },
+        },
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),

@@ -20,13 +20,11 @@ vim.keymap.set('v', '<leader>d', '"_d', { desc = 'Delete to void' })
 
 vim.keymap.set('n', 'Q', '<nop>', { desc = 'NEVER PRESS "Q"!!' })
 
-vim.keymap.set('n', '<C-f>', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = 'Create new tmux session' })
-
-vim.keymap.set('n', '<leader>s', ':%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>', { desc = 'Replace current word over entire file' })
+vim.keymap.set('n', '<leader>S', ':%s/\\<<C-r><C-w>\\>//gI<Left><Left><Left>', { desc = 'Replace current word over entire file' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -44,6 +42,17 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Trouble.nvim keymaps
+vim.keymap.set('n', '<leader>x', function()
+  require('trouble').toggle()
+end)
+vim.keymap.set('n', '[d', function()
+  require('trouble').previous { skip_groups = true, jump = true }
+end)
+vim.keymap.set('n', ']d', function()
+  require('trouble').next { skip_groups = true, jump = true }
+end)
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
